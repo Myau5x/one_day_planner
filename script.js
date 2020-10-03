@@ -21,6 +21,9 @@ $(".saveBtn").on("click",function(){
     // look what button clicked, save the value of corresponding textarea
     /// tasks[10] = text.area
     /// localStorage.setItem("tasks", JSON.stringify(tasks));
+    h = $(this).attr("data-hour");
+    console.log(h)
+    console.log($("#"+h).val());
 });
 
 /*
