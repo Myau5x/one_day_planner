@@ -1,6 +1,7 @@
 
 ///comment after adding saves
 let tasks = [{hour:"9", text:"school zoom 1"},{hour:"10",text:"homework"}, {hour:"12",text:'lunch'}];
+let tasks2 = {9:"",10:"",11:"",12:"",13:"",14:"",15:"",16:"",17:""};
 let now = moment();
 let today = now.format("dddd, MMMM Do YYYY");
 
@@ -16,7 +17,7 @@ let today = now.format("dddd, MMMM Do YYYY");
         </div>
 */
 function renderTable(){
-for(i =10; i< 24;i++){
+for(i =10; i< 18;i++){
     group = $("<div>");
     group.addClass("input-group input-group-lg col-12");
     prep = $("<div>");
@@ -47,16 +48,27 @@ renderTable();
 function renderTask(){
     ///load from storage object
     ///var tasks = JSON.parse(localStorage.getItem("tasks"));
+
     tasks.forEach(function(item){
         console.log(item);
         $('#'+item.hour).val(item.text);
     })
 
 }
+function renderTask2(){
+    ///load from storage
+    let t2 = JSON.parse(localStorage.getItem("tasks"));
+    console.log(t2);
+    if(!t2){ t2 = tasks2}
+    for(i=9;i<18;i++){
+        $("#"+i).val(t2[i]);
 
-renderTask();
+    }
+}
+
+renderTask2();
 $("#currentDay").text(today);
-console.log(now.hour());
+//console.log(now.hour());
 
 $(".saveBtn").on("click",function(){
     // look what button clicked, save the value of corresponding textarea
@@ -65,6 +77,9 @@ $(".saveBtn").on("click",function(){
     h = $(this).attr("data-hour");
     console.log(h)
     console.log($("#"+h).val());
+    tasks2[parseInt(h)] = $("#"+h).val();
+    console.log(tasks2);
+    localStorage.setItem("tasks", JSON.stringify(tasks2));
 });
 
 /*
@@ -76,7 +91,7 @@ $("#9").addClass('past')
 */
 diff = 0 //use for  testing future times on night
 function styleHours(){
-    for(i=9; i< 24;i++){
+    for(i=9; i< 18;i++){
         id = '#'+i;
         if (i +diff < now.hour()){
             $(id).addClass("past");
