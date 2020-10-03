@@ -15,10 +15,34 @@ function renderTask(){
 
 renderTask();
 $("#currentDay").text(today);
-console.log(today);
+console.log(now.hour());
 
 $(".saveBtn").on("click",function(){
     // look what button clicked, save the value of corresponding textarea
     /// tasks[10] = text.area
     /// localStorage.setItem("tasks", JSON.stringify(tasks));
 });
+
+/*
+check if hour < now.hour :add class past
+check if hour == now.hour : add now
+check if hour > now.hour add class future
+$("#9").addClass('past')
+
+*/
+diff = 0 //use for ight testing future times
+function styleHours(){
+    for(i=9; i< 18;i++){
+        id = '#'+i;
+        if (i +diff < now.hour()){
+            $(id).addClass("past");
+        }
+        else if (i+ diff ===now.hour()){
+            $(id).addClass("present");
+        }
+        else{
+            $(id).addClass("future");
+        }
+    }
+}
+styleHours()
