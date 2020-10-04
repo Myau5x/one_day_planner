@@ -81,7 +81,7 @@ $(".saveBtn").on("click",function(){
     console.log(t2);
     if(!t2){ t2 = tasks2}
     t2[parseInt(h)] = $("#"+h).val();
-    console.log(tasks2);
+    console.log(t2);
     localStorage.setItem("tasks", JSON.stringify(t2));
 });
 
