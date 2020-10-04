@@ -77,9 +77,12 @@ $(".saveBtn").on("click",function(){
     h = $(this).attr("data-hour");
     console.log(h)
     console.log($("#"+h).val());
-    tasks2[parseInt(h)] = $("#"+h).val();
+    let t2 = JSON.parse(localStorage.getItem("tasks"));
+    console.log(t2);
+    if(!t2){ t2 = tasks2}
+    t2[parseInt(h)] = $("#"+h).val();
     console.log(tasks2);
-    localStorage.setItem("tasks", JSON.stringify(tasks2));
+    localStorage.setItem("tasks", JSON.stringify(t2));
 });
 
 /*
